@@ -1,1 +1,1 @@
-# HumanExperiences
+# Earthquake Searcher
