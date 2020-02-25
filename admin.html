@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Firebase Admin</title>
+    <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body style="font-family: Roboto, sans-serif;">
+    <h1>Earthquake Searches</h1>
+    <h3>Time Searched | Client Ip | Earthquake Viewed</h3>
+    <ul id="list" type="1">
+        <li>No data yet!</li>
+    </ul>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCclwHiZUCm9IhXiPE8VzweeM5NRubgspc",
+            authDomain: "project2-1f1b6.firebaseapp.com",
+            databaseURL: "https://project2-1f1b6.firebaseio.com",
+            projectId: "project2-1f1b6",
+            storageBucket: "project2-1f1b6.appspot.com",
+            messagingSenderId: "418974804103",
+            appId: "1:418974804103:web:39479a4a73216262"
+        }
+
+        // Grabs info from firebase
+        firebase.initializeApp(config);
+        firebase.database().ref("searches").on("value", dataChanged, firebaseError);
+
+        function dataChanged(data) {
+            let obj = data.val();
+            let bigString = "";
+
+            // Loops through data and displays it in a list
+            for (let key in obj) {
+                let row = obj[key];
+                bigString += `<li>${row.date} <b>|</b> ${row.ip} <b>|</b>  ${row.earthquake.place}</li>`;
+            }
+
+            list.innerHTML = bigString;
+
+            let searchlist = document.querySelector("#list");
+            searchlist.sort;
+        }
+
+        // Console logs any fire errors
+        function firebaseError(error) {
+            console.log(error);
+        }
+    </script>
+</body>
+
+</html>

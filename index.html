@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+
+<head>
+    <meta charset="utf-8">
+    <title>Earthquake Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<!-- Content -->
+
+<body>
+    <div id="map"></div>
+    <div id="app">
+        <div id="controls">
+            <p>
+                <button @click="setZoom(3)" id="worldZoomButton">World Zoom</button>
+                <button @click="setZoom(6)" id="defaultZoomButton">Default Zoom</button>
+            </p>
+
+            <p class="inputField" id="resultLimit">Max Results:
+                <select id="limit" v-model="limit">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </p>
+
+            <p class="inputField">Magnitude: {{magnitude}}
+                <input type="range" max="10" min=".5" step=".5" v-model="magnitude" class="slider">
+            </p>
+
+            <p class="inputField">Search Year: {{year}}
+                <input type="range" max="2019" min="1921" step="1" v-model="year" class="slider">
+            </p>
+
+            <p class="inputField">Max Radius: {{radius}}km
+                <input id="maxRadius" type="range" max="3000" min="0" step="50" v-model="radius" class="slider">
+            </p>
+
+            <button @click="search" id="search">Search</button>
+
+            <div id="searchError" ref="searchError">
+                <p>Search yielded no results.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWzbHsMCz2SIim1JugMAbbdEdIU_oXajM&callback=app.initMap"
+        async defer></script>
+    <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=app.getIP"></script>
+
+</body>
+
+</html>
