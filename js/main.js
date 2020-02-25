@@ -38,7 +38,7 @@ var app = new Vue({
     // Initilizing Firebase
     initFirebase() {
       var config = {
-        apiKey: "AIzaSyCclwHiZUCm9IhXiPE8VzweeM5NRubgspc",
+        apiKey: "${{ secrets.FIREBASE_API_KEY }}",
         authDomain: "project2-1f1b6.firebaseapp.com",
         databaseURL: "https://project2-1f1b6.firebaseio.com",
         projectId: "project2-1f1b6",
